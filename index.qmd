@@ -12,26 +12,26 @@ about:
       href: https://linkedin.com
     - icon: instagram
       text: Instagram
-      href: https://instagram.com
+      href: https://instagram.com/sophierodgerr?igshid=OGQ5ZDc2ODk2ZA==
     - icon: github
       text: GitHub
       href: https://github.com
     - icon: file-earmark-pdf
       text: Resumé
-      href: https://GITHUB_USERNAME.github.io/resume-example.pdf
+      href: https://sophierodger.github.io/resume-example.pdf
     - icon: mailbox
       text: Email
-      href: mailto:YOUR_EMAIL@geneseo.edu
+      href: mailto:sr103@geneseo.edu
 
 ---
 
 
-Finley Malloc majors in Data Analytics at SUNY Geneseo. When not working on data analytics, Finley enjoys spending time unicycling and playing with her pet iguana.
+Sophia Rodger majors in Business Administration at SUNY Geneseo. When not working on data analytics, Sophia enjoys spending time hanging out with friends and working on her food truck, Wraps on Wheels. 
 
 ## Education
 
 State University of New York at Geneseo | Geneseo, NY <br>
-B.S. in Data Analytics | Aug 2022 - May 2026 <br>
+Major in Finance | Aug 2022 - May 2026 <br>
 Minor in Business Administration 
 
 ## Experience
