@@ -12,7 +12,7 @@ about:
       href: https://linkedin.com
     - icon: instagram
       text: Instagram
-      href: https://instagram.com/sophierodgerr?igshid=OGQ5ZDc2ODk2ZA==
+      href: https://https://www.instagram.com/sophierodgerr/
     - icon: github
       text: GitHub
       href: https://github.com
@@ -36,6 +36,6 @@ Minor in Business Administration
 
 ## Experience
 
-Starbucks Analytics | Data Analyst Intern | May 2024 - Aug 2024
+Starbucks Analytics | Data Analyst Intern | May 2024 - Aug 2024 
 
 
