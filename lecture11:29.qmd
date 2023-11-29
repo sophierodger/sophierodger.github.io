@@ -1,0 +1,18 @@
+---
+title: "Habits"
+author: YOUR_NAME
+date: November 27, 2023
+format: 
+  html
+---
+
+# Section 1
+
+-   some bullet
+
+[Quarto](https://quarto.org)
+
+
+
+
+
