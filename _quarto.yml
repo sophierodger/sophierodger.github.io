@@ -20,7 +20,7 @@ website:
 format:
   html:
     theme: 
-      lightgi: quartz
+      light: quartz
       dark: darkly
     mainfont: system-ui; 
     highlight-style: espresso # atom-one
