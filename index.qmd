@@ -2,20 +2,20 @@
 title: "Sophia Rodger"
 about:
   template: trestles  # jolla  trestles  solana  marquee  broadside
-  image: img/profile.png
+  image: img/profile.png 
   image-width: 15em
   image-shape: round # rectangle  round  rounded
   
   links:
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com
+      href: https://www.linkedin.com/in/sophia-rodger-58b31124a/
     - icon: instagram
       text: Instagram
       href: https://https://www.instagram.com/sophierodgerr/
     - icon: github
       text: GitHub
-      href: https://github.com
+      href: https://github.com/sophierodger
     - icon: file-earmark-pdf
       text: Resumé
       href: https://sophierodger.github.io/resume-example.pdf

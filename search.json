@@ -123,12 +123,12 @@
     "href": "lecture11:29.html",
     "title": "Habits",
     "section": "",
-    "text": "Section 1\n\nsome bullet\n\nQuarto"
+    "text": "Section 1\n\nsome bullet\n\nQuarto\nggplot\n\n\n\n\n\n\nggplot(gapminder) +\n  geom_point(aes(x = gdpPercap, y = lifeExp,\n                 color = continent), alpha = .25) +\n  labs(x = \"GDP per capita\",\n       y = \"Life Expectancy\",\n       color = \"Continent\") +\n  theme_economist()\n\n:smile:"
   },
   {
-    "objectID": "blog-listing.html",
-    "href": "blog-listing.html",
-    "title": "Insightful Analytics",
+    "objectID": "hw.html",
+    "href": "hw.html",
+    "title": "Project",
     "section": "",
     "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nBeer Markets\n\n\n\n\n\n\n\n\n\nNov 2, 2023\n\n\nByeong-Hak Choe\n\n\n9 min\n\n\n\n\n\n\n  \n\n\n\n\nStarwars\n\n\n\n\n\n\n\n\n\nOct 30, 2023\n\n\nYour Name\n\n\n3 min\n\n\n\n\n\n\n  \n\n\n\n\nPost With Code\n\n\n\n\n\n\n\n\n\nOct 30, 2023\n\n\nYOUR NAME\n\n\n1 min\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\nOct 27, 2023\n\n\nYOUR NAME\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
   }
