@@ -21,25 +21,53 @@
     "text": "2.2 MPG and a Type of Cars\nThe following boxplot shows how the distribution of highway MPG (hwy) varies by a type of cars (class) 🚙 🚚 🚐.\n\nggplot(data = mpg) +\n  geom_boxplot(aes(x = class, y = hwy, fill = class),\n               show.legend = F) +\n  labs(x = \"Class\", y = \"Highway\\nMPG\")"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Sophia Rodger",
+    "objectID": "blog-listing.html",
+    "href": "blog-listing.html",
+    "title": "Insightful Analytics",
     "section": "",
-    "text": "Sophia Rodger majors in Business Administration at SUNY Geneseo. When not working on data analytics, Sophia enjoys spending time hanging out with friends and working on her food truck, Wraps on Wheels."
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nBeer Markets\n\n\n\n\n\n\n\n\n\nNov 2, 2023\n\n\nByeong-Hak Choe\n\n\n9 min\n\n\n\n\n\n\n  \n\n\n\n\nStarwars\n\n\n\n\n\n\n\n\n\nOct 30, 2023\n\n\nYour Name\n\n\n3 min\n\n\n\n\n\n\n  \n\n\n\n\nPost With Code\n\n\n\n\n\n\n\n\n\nOct 30, 2023\n\n\nYOUR NAME\n\n\n1 min\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\nOct 27, 2023\n\n\nYOUR NAME\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "index.html#education",
-    "href": "index.html#education",
-    "title": "Sophia Rodger",
-    "section": "Education",
-    "text": "Education\nState University of New York at Geneseo | Geneseo, NY  Major in Finance | Aug 2022 - May 2026  Minor in Business Administration"
+    "objectID": "lecture11:29.html",
+    "href": "lecture11:29.html",
+    "title": "Habits",
+    "section": "",
+    "text": "Section 1\n\nsome bullet\n\nQuarto\nggplot\n\n\n\n\n\n\nggplot(gapminder) +\n  geom_point(aes(x = gdpPercap, y = lifeExp,\n                 color = continent), alpha = .25) +\n  labs(x = \"GDP per capita\",\n       y = \"Life Expectancy\",\n       color = \"Continent\") +\n  theme_economist()\n\n:smile:"
   },
   {
-    "objectID": "index.html#experience",
-    "href": "index.html#experience",
-    "title": "Sophia Rodger",
-    "section": "Experience",
-    "text": "Experience\nStarbucks Analytics | Data Analyst Intern | May 2024 - Aug 2024"
+    "objectID": "posts/starwars/starwars_df.html",
+    "href": "posts/starwars/starwars_df.html",
+    "title": "Starwars",
+    "section": "",
+    "text": "Let’s analyze the starwars data:\nstarwars &lt;- read_csv(\"https://bcdanl.github.io/data/starwars.csv\")"
+  },
+  {
+    "objectID": "posts/starwars/starwars_df.html#variable-description-for-starwars-data.frame",
+    "href": "posts/starwars/starwars_df.html#variable-description-for-starwars-data.frame",
+    "title": "Starwars",
+    "section": "Variable Description for starwars data.frame",
+    "text": "Variable Description for starwars data.frame\nThe following describes the variables in the starwars data.frame.\n\nfilms List of films the character appeared in\nname Name of the character\nspecies Name of species\nheight Height (cm)\nmass Weight (kg)\nhair_color, skin_color, eye_color Hair, skin, and eye colors\nbirth_year Year born (BBY = Before Battle of Yavin)\nsex The biological sex of the character, namely male, female, hermaphroditic, or none (as in the case for Droids).\ngender The gender role or gender identity of the character as determined by their personality or the way they were programmed (as in the case for Droids).\nhomeworld Name of homeworld"
+  },
+  {
+    "objectID": "posts/starwars/starwars_df.html#human-vs.-droid",
+    "href": "posts/starwars/starwars_df.html#human-vs.-droid",
+    "title": "Starwars",
+    "section": "Human vs. Droid",
+    "text": "Human vs. Droid\n\nggplot(data = \n         starwars %&gt;% \n         filter(species %in% c(\"Human\", \"Droid\"))) +\n  geom_boxplot(aes(x = species, y = mass, \n                   fill = species),\n               show.legend = FALSE)"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "This is a post with executable code.\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
   },
   {
     "objectID": "posts/beer-markets/beer-markets.html",
@@ -84,52 +112,31 @@
     "text": "Promotional Impact\nWe’ll assess the impact of promotions on the quantity of beer purchased. For this analysis, we can calculate the average quantity purchased with and without promotions and visualize the difference. We’ll do this for each brand to see which brands are most affected by promotions.\nLet’s begin this analysis by looking at the average quantity purchased with and without promotions for each brand.\n\n# Calculate average quantity purchased with and without promotions for each brand\npromo_impact = beer_data.groupby(['brand', 'promo']).agg({'quantity':'mean'}).reset_index()\n\n# Pivot the data to have promo and non-promo side by side for each brand\npromo_impact_pivot = promo_impact.pivot(index='brand', columns='promo', values='quantity').reset_index()\npromo_impact_pivot.columns = ['brand', 'non_promo', 'promo']\n\n# Calculate the difference in average quantity purchased between promo and non-promo\npromo_impact_pivot['promo_impact'] = promo_impact_pivot['promo'] - promo_impact_pivot['non_promo']\n\n# Sort by the impact of promo\npromo_impact_pivot_sorted = promo_impact_pivot.sort_values('promo_impact', ascending=False)\n\n# Plotting the difference in average quantity purchased between promo and non-promo for each brand\nplt.figure(figsize=(12, 10))\nsns.barplot(x='promo_impact', y='brand', data=promo_impact_pivot_sorted, palette='viridis')\nplt.title('Impact of Promotions on Average Quantity Purchased by Brand')\nplt.xlabel('Difference in Average Quantity Purchased (Promo - Non-Promo)')\nplt.ylabel('Brand')\nplt.show()\n\n\n\n\nThe bar chart illustrates the impact of promotions on the average quantity of beer purchased by brand. A positive value indicates that, on average, more beer is purchased when there is a promotion compared to when there isn’t. Some brands appear to be significantly more influenced by promotions, with customers buying more when the products are on sale or promotion.\nThis comprehensive analysis has provided insights into purchase patterns, demographic preferences, price sensitivity, and the impact of promotions on beer purchases."
   },
   {
-    "objectID": "posts/welcome/index.html",
-    "href": "posts/welcome/index.html",
-    "title": "Welcome To My Blog",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Sophia Rodger",
     "section": "",
-    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+    "text": "Sophia Rodger majors in Business Administration at SUNY Geneseo. When not working on data analytics, Sophia enjoys spending time hanging out with friends and working on her food truck, Wraps on Wheels."
   },
   {
-    "objectID": "posts/post-with-code/index.html",
-    "href": "posts/post-with-code/index.html",
-    "title": "Post With Code",
-    "section": "",
-    "text": "This is a post with executable code.\n\n1 + 1\n\n[1] 2"
+    "objectID": "index.html#education",
+    "href": "index.html#education",
+    "title": "Sophia Rodger",
+    "section": "Education",
+    "text": "Education\nState University of New York at Geneseo | Geneseo, NY  Major in Finance | Aug 2022 - May 2026  Minor in Business Administration"
   },
   {
-    "objectID": "posts/starwars/starwars_df.html",
-    "href": "posts/starwars/starwars_df.html",
-    "title": "Starwars",
-    "section": "",
-    "text": "Let’s analyze the starwars data:\nstarwars &lt;- read_csv(\"https://bcdanl.github.io/data/starwars.csv\")"
-  },
-  {
-    "objectID": "posts/starwars/starwars_df.html#variable-description-for-starwars-data.frame",
-    "href": "posts/starwars/starwars_df.html#variable-description-for-starwars-data.frame",
-    "title": "Starwars",
-    "section": "Variable Description for starwars data.frame",
-    "text": "Variable Description for starwars data.frame\nThe following describes the variables in the starwars data.frame.\n\nfilms List of films the character appeared in\nname Name of the character\nspecies Name of species\nheight Height (cm)\nmass Weight (kg)\nhair_color, skin_color, eye_color Hair, skin, and eye colors\nbirth_year Year born (BBY = Before Battle of Yavin)\nsex The biological sex of the character, namely male, female, hermaphroditic, or none (as in the case for Droids).\ngender The gender role or gender identity of the character as determined by their personality or the way they were programmed (as in the case for Droids).\nhomeworld Name of homeworld"
-  },
-  {
-    "objectID": "posts/starwars/starwars_df.html#human-vs.-droid",
-    "href": "posts/starwars/starwars_df.html#human-vs.-droid",
-    "title": "Starwars",
-    "section": "Human vs. Droid",
-    "text": "Human vs. Droid\n\nggplot(data = \n         starwars %&gt;% \n         filter(species %in% c(\"Human\", \"Droid\"))) +\n  geom_boxplot(aes(x = species, y = mass, \n                   fill = species),\n               show.legend = FALSE)"
-  },
-  {
-    "objectID": "lecture11:29.html",
-    "href": "lecture11:29.html",
-    "title": "Habits",
-    "section": "",
-    "text": "Section 1\n\nsome bullet\n\nQuarto\nggplot\n\n\n\n\n\n\nggplot(gapminder) +\n  geom_point(aes(x = gdpPercap, y = lifeExp,\n                 color = continent), alpha = .25) +\n  labs(x = \"GDP per capita\",\n       y = \"Life Expectancy\",\n       color = \"Continent\") +\n  theme_economist()\n\n:smile:"
+    "objectID": "index.html#experience",
+    "href": "index.html#experience",
+    "title": "Sophia Rodger",
+    "section": "Experience",
+    "text": "Experience\nStarbucks Analytics | Data Analyst Intern | May 2024 - Aug 2024"
   },
   {
     "objectID": "hw.html",
     "href": "hw.html",
-    "title": "Project",
+    "title": "HW",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nBeer Markets\n\n\n\n\n\n\n\n\n\nNov 2, 2023\n\n\nByeong-Hak Choe\n\n\n9 min\n\n\n\n\n\n\n  \n\n\n\n\nStarwars\n\n\n\n\n\n\n\n\n\nOct 30, 2023\n\n\nYour Name\n\n\n3 min\n\n\n\n\n\n\n  \n\n\n\n\nPost With Code\n\n\n\n\n\n\n\n\n\nOct 30, 2023\n\n\nYOUR NAME\n\n\n1 min\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\nOct 27, 2023\n\n\nYOUR NAME\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
+    "text": "my homework"
   }
 ]

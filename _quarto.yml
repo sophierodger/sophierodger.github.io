@@ -19,9 +19,9 @@ website:
 
 format:
   html:
-    theme: quartz
-      # light:  
-      # dark: darkly 
+    theme: 
+      light: quartz
+      dark: darkly
     mainfont: system-ui; 
     highlight-style: espresso # atom-one
     css: styles.css
