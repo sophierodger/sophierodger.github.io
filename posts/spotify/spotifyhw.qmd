@@ -42,6 +42,16 @@ top_songs
 ```
 
 ```{r}
+top_artists <- spotify_all %>%
+  group_by(artist_name) %>%
+  summarize(popularity = n()) %>%
+  arrange(desc(popularity)) %>%
+  head(5)
+top_artists
+
+# This code finds the five most popular artists which are Drake, Kanye West, 
+# Kendrick Lamar, Rihanna, and The Weekend.
+
 most_popular_songs <- spotify_all %>%
   filter(artist_name %in% top_artists$artist_name) %>%
   group_by(artist_name, track_name) %>%
@@ -53,6 +63,7 @@ most_popular_songs
 
 # This finds the most popular song for each of the five most popular artists
 # which is One Dance, Gold Digger, HUMBLE., Needed Me, and Starboy respectively.
+
 ```
 
 ```{r}
@@ -61,16 +72,24 @@ ggplot(top_songs, aes(x = artist_name, y = popularity, fill = artist_name)) +
   labs(title = "Popularity of the Ten Most Popular Artists",
        x = "Artist Name", y = "Popularity") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
 # This code create a ggplot to visualize the relationship between 'pos' and the ten 
 # most popular artists, showing that Drake has the highest popularity, while Khalid
 # has the lowest popularity. The bar chart shows that all of the artists have a 
 # popularity above 100.
-```
 
+```
 ```{r}
-pid_artist_data <- spotify_all %>%
-  group_by(pid, playlist_name, artist) %>%
-  summarize(n_artist = n())
-pid_artist_data
+# -   `pid`: playlist id
+# -   `playlist_name`: name of playlist
+# -   `artist`: name of the track's primary artist, which appears only once within a playlist
+# -   `n_artist`: number of occurrences of artist within a playlist
+
+# Answer for Q1d
+
+pid_artist_df <- spotify_all %>% 
+  group_by(pid, playlist_name, artist_name) %>% 
+  summarise(n_artist = n_distinct(artist_name))
+
 # This creates a data frame with pid-artist level of observations
 ```
