@@ -11,8 +11,10 @@ website:
         href: project.qmd
       - text: Blog
         href: blog-listing.qmd
-      - text: Classwork
+      - text: Homework
         href: hw.qmd
+      - text: cw.qmd
+        href: Classwork
            
   page-footer: 
     center: "Powered with GitHub and Quarto<br>© Sophia Rodger, 2023"
