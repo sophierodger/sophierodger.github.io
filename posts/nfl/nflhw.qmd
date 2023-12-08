@@ -1,8 +1,4 @@
----NFL in 2022"
-author: "Sophia Rodger"
-date: "2023-10-27"
-categories: [news]
----
+---NFL in 2022" author: "Sophia Rodger" date: "2023-10-27" categories: [news] ---
 
 ```{r setup}
 #| include: false
@@ -25,13 +21,18 @@ theme_set(theme_ipsum()+
           )
 ```
 
-# Q2a
+
+
 ```{r}
+#Q2a
 NFL2022_stuffs <- read_csv('https://bcdanl.github.io/data/NFL2022_stuffs.csv')
  NFL2022_stuffs <- NFL2022_stuffs[complete.cases(NFL2022_stuffs$posteam), ]
 ```
-# Q2b
+
+
+
 ```{r}
+#Q2b
  filtered_data <- NFL2022_stuffs %>%
   filter(wp > 0.2 & wp < 0.75, down <= 2, half_seconds_remaining > 120)
 
@@ -41,8 +42,8 @@ NFL2022_stuffs <- read_csv('https://bcdanl.github.io/data/NFL2022_stuffs.csv')
 ```
 
 
-# Q2c
 ```{r}
+#Q2c
 library(ggplot2)
 
 # Reordering posteam based on mean value of pass
@@ -56,16 +57,19 @@ library(ggplot2)
        y = "Team with possession") +
   theme_minimal()
 ```
-# Q2d
+
 ```{r}
+#Q2d
 NFL2022_epa <- read_csv('https://bcdanl.github.io/data/NFL2022_epa.csv')
 
 NFL2022_stuffs_EPA <- NFL2022_stuffs %>%
   left_join(NFL2022_epa %>% select(play_id, passer, receiver, epa), by = "play_id") %>%
   filter(!is.na(passer))
 ```
-# Q2e
+
+
 ```{r}
+#Q2e
 weekly_trend <- NFL2022_stuffs_EPA %>%
   filter(passer %in% c("J.Allen", "P.Mahomes")) %>%
  group_by(week, passer) %>%
@@ -79,16 +83,19 @@ ggplot(weekly_trend, aes(x = week, y = mean_epa, color = passer)) +
        y = "Mean EPA") +
  theme_minimal()
 ```
-# Q2f
+
+
 ```{r}
+#Q2f
 mean_epa_diff <- weekly_trend %>%
   spread(passer, mean_epa) %>%
   mutate(diff_J_Allen_P_Mahomes = `J.Allen` - `P.Mahomes`)
 ```
 
-# Q2g
+
 
 ```{r}
+#Q2g
 passer_summary <- NFL2022_stuffs_EPA %>%
   group_by(posteam, passer) %>%
   summarize(mean_epa = mean(epa, na.rm = TRUE),
@@ -100,6 +107,3 @@ top_10_passers <- passer_summary %>%
   summarize(mean_epa = mean(mean_epa, na.rm = TRUE)) %>%
   top_n(10, wt = mean_epa)
 ```
-
-
-
