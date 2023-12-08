@@ -22,6 +22,7 @@ execute:
 
 from: markdown+emoji
 ---
+
 ```{r setup}
 #| include: false
 library(tidyverse)
@@ -43,8 +44,6 @@ theme_set(theme_ipsum()+
           )
 ```
 
-
-
 # Introduction
 
 About this project :clap:
@@ -53,11 +52,9 @@ About this project :clap:
 1 + 1
 ```
 
-
 # Data
 
-The data.frame `mpg` contains a subset of the fuel economy data that the EPA makes available on [https://fueleconomy.gov/](https://fueleconomy.gov/). It contains only models which had a new release every year between 1999 and 2008 - this was used as a proxy for the popularity of the car. :oncoming_automobile:
-
+The data.frame `mpg` contains a subset of the fuel economy data that the EPA makes available on <https://fueleconomy.gov/>. It contains only models which had a new release every year between 1999 and 2008 - this was used as a proxy for the popularity of the car. :oncoming_automobile:
 
 ## Summary Statistics
 
@@ -71,16 +68,14 @@ mpg <- ggplot2::mpg
 rmarkdown::paged_table(mpg) 
 ```
 
-
 ```{r}
 skim(mpg) %>% 
   select(-n_missing)
 ```
 
-
 ## MPG and a Type of Cars
-The following boxplot shows how the distribution of highway MPG (`hwy`) varies by a type of cars (`class`) :blue_car: :truck: :minibus:.
 
+The following boxplot shows how the distribution of highway MPG (`hwy`) varies by a type of cars (`class`) :blue_car: :truck: :minibus:.
 
 ```{r}
 ggplot(data = mpg) +
@@ -88,5 +83,3 @@ ggplot(data = mpg) +
                show.legend = F) +
   labs(x = "Class", y = "Highway\nMPG") 
 ```
-
-
