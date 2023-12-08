@@ -11,7 +11,7 @@ website:
         href: project.qmd
       - text: Blog
         href: blog-listing.qmd
-      - text: Homework
+      - text: Classwork
         href: hw.qmd
            
   page-footer: 
