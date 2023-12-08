@@ -1,0 +1,76 @@
+```{r setup}
+#| include: false
+library(tidyverse)
+library(skimr)
+library(ggthemes)
+library(hrbrthemes)
+
+theme_set(theme_ipsum()+
+          theme(strip.background =element_rect(fill="pink"),
+                axis.title.x = 
+                  element_text(angle = 0,
+                               size = rel(1.33),
+                               margin = margin(10,0,0,0)),
+                axis.title.y = 
+                  element_text(angle = 0,
+                               size = rel(1.33),
+                               margin = margin(0,10,0,0))
+                )
+          )
+```
+
+```{r}
+library(tidyverse)
+library(skimr)
+spotify_all <- read_csv('https://bcdanl.github.io/data/spotify_all.csv')
+# The data.frame `spotify_all` includes information about Spotify users' playlists
+```
+
+```{r}
+# Answer for Q1a
+top_songs <- spotify_all %>%
+  group_by(artist_name, track_name) %>%
+  summarize(popularity = n()) %>%
+  arrange(desc(popularity)) %>%
+  head(10)
+top_songs
+
+
+# This code finds the ten most popular songs and their artists, with the artists
+# being, Drake, Kendrick Lamar, The Chainsmokers, DRAM, Post Malone, Migos, KYLE, 
+# Lil Uzi Vert, Amine, Khalid respectively.
+```
+
+```{r}
+most_popular_songs <- spotify_all %>%
+  filter(artist_name %in% top_artists$artist_name) %>%
+  group_by(artist_name, track_name) %>%
+  summarize(popularity = n()) %>%
+  arrange(artist_name, desc(popularity)) %>%
+  group_by(artist_name) %>%
+  slice(1)
+most_popular_songs
+
+# This finds the most popular song for each of the five most popular artists
+# which is One Dance, Gold Digger, HUMBLE., Needed Me, and Starboy respectively.
+```
+
+```{r}
+ggplot(top_songs, aes(x = artist_name, y = popularity, fill = artist_name)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Popularity of the Ten Most Popular Artists",
+       x = "Artist Name", y = "Popularity") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+# This code create a ggplot to visualize the relationship between 'pos' and the ten 
+# most popular artists, showing that Drake has the highest popularity, while Khalid
+# has the lowest popularity. The bar chart shows that all of the artists have a 
+# popularity above 100.
+```
+
+```{r}
+pid_artist_data <- spotify_all %>%
+  group_by(pid, playlist_name, artist) %>%
+  summarize(n_artist = n())
+pid_artist_data
+# This creates a data frame with pid-artist level of observations
+```
