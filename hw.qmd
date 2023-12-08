@@ -22,15 +22,13 @@ execute:
 
 # Q2a
 
-NFL2022_stuffs <- read_csv('https://bcdanl.github.io/data/NFL2022_stuffs.csv')
-NFL2022_stuffs <- NFL2022_stuffs[complete.cases(NFL2022_stuffs$posteam), ]
+NFL2022_stuffs \<- read_csv('https://bcdanl.github.io/data/NFL2022_stuffs.csv') NFL2022_stuffs \<- NFL2022_stuffs\[complete.cases(NFL2022_stuffs\$posteam), \]
+
 # Q2b
 
 filtered_data \<- NFL2022_stuffs %\>% filter(wp \> 0.2 & wp \< 0.75, down \<= 2, half_seconds_remaining \> 120)
 
-summary_pass \<- filtered_data %\>% group_by(posteam) %\>% summarize(mean_pass = mean(pass, na.rm = TRUE))
-
-# Q2c
+summary_pass \<- filtered_data %\>% group_by(posteam) %\>% summarize(mean_pass = mean(pass, na.rm = TRUE)) \# Q2c
 
 library(ggplot2)
 
@@ -46,9 +44,7 @@ ggplot(summary_pass, aes(x = mean_pass, y = posteam)) + geom_point() + labs(titl
 
 NFL2022_epa \<- read_csv('https://bcdanl.github.io/data/NFL2022_epa.csv')
 
-NFL2022_stuffs_EPA \<- NFL2022_stuffs %\>% left_join(NFL2022_epa %\>% select(play_id, passer, receiver, epa), by = "play_id") %\>% filter(!is.na(passer))
-
-# Q2e
+NFL2022_stuffs_EPA \<- NFL2022_stuffs %\>% left_join(NFL2022_epa %\>% select(play_id, passer, receiver, epa), by = "play_id") %\>% filter(!is.na(passer)) \# Q2e
 
 weekly_trend \<- NFL2022_stuffs_EPA %\>% filter(passer %in% c("J.Allen", "P.Mahomes")) %\>% group_by(week, passer) %\>% summarize(mean_epa = mean(epa, na.rm = TRUE))
 
