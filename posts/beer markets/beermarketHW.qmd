@@ -1,0 +1,79 @@
+```{r setup}
+#| include: false
+library(tidyverse)
+library(skimr)
+library(ggthemes)
+library(hrbrthemes)
+
+theme_set(theme_ipsum()+
+          theme(strip.background =element_rect(fill="pink"),
+                axis.title.x = 
+                  element_text(angle = 0,
+                               size = rel(1.33),
+                               margin = margin(10,0,0,0)),
+                axis.title.y = 
+                  element_text(angle = 0,
+                               size = rel(1.33),
+                               margin = margin(0,10,0,0))
+                )
+          )
+```
+
+```{r}
+library(tidyverse)
+library(skimr)
+
+beer_mkts <- read_csv('https://bcdanl.github.io/data/beer_markets.csv')
+```
+
+```{r}
+
+top_markets <- beer_mkts %>%
+  group_by(brand, market) %>%
+  summarize(total_floz = sum(beer_floz)) %>%
+  arrange(brand, desc(total_floz)) %>%
+  group_by(brand) %>%
+  slice(1:5)
+top_markets
+
+# This code finds the top 5 markets in terms of total beer_floz for each beer brand
+```
+
+
+```{r}
+loyal_consumers <- beer_mkts %>%
+  group_by(hh, brand) %>%
+  summarize(purchased = n()) %>%
+  group_by(brand) %>%
+  mutate(total_hh = n(),
+         fraction = sum(purchased == 1) / total_hh) %>%
+  arrange(desc(fraction))
+loyal_consumers
+
+# This code calculates the fraction of households purchasing only each beer brand
+
+largest_proportion_brand <- loyal_consumers %>%
+  arrange(desc(fraction)) %>%
+  slice(1)
+largest_proportion_brand
+
+# This code finds the brand with the largest proportion of loyal consumers
+```
+
+```{r}
+
+household_stats <- beer_mkts %>%
+  group_by(hh) %>%
+  summarize(num_transactions = n(),
+            proportion_bud_light = mean(brand == "Bud Light"),
+            proportion_busch_light = mean(brand == "Busch Light"),
+            proportion_coors_light = mean(brand == "Coors Light"),
+            proportion_miller_lite = mean(brand == "Miller Lite"),
+            proportion_natural_light = mean(brand == "Natural Light"))
+household_stats
+
+# This code calculates the number of beer transactions and proportion of each 
+# beer brand choice for each household
+```
+
+
