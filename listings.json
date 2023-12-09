@@ -3,10 +3,10 @@
     "listing": "/blog-listing.html",
     "items": [
       "/posts/classwork.qmd/cw.html",
-      "/posts/nfl/nflhw.html",
       "/posts/beer markets/beermarketHW.html",
       "/posts/spotify/spotifyhw.html",
-      "/posts/welcome/index.html"
+      "/posts/welcome/index.html",
+      "/posts/nfl/nflhw.html"
     ]
   }
 ]

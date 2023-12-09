@@ -1,4 +1,11 @@
----NFL in 2022" author: "Sophia Rodger" date: "2023-10-27" categories: [news] ---
+
+---
+title: "NFL in 2022"
+author: "Sophia Rodger"
+date: "2023-10-27"
+categories: [news]
+# NFL
+---
 
 ```{r setup}
 #| include: false
@@ -21,15 +28,11 @@ theme_set(theme_ipsum()+
           )
 ```
 
-
-
 ```{r}
 #Q2a
 NFL2022_stuffs <- read_csv('https://bcdanl.github.io/data/NFL2022_stuffs.csv')
  NFL2022_stuffs <- NFL2022_stuffs[complete.cases(NFL2022_stuffs$posteam), ]
 ```
-
-
 
 ```{r}
 #Q2b
@@ -40,7 +43,6 @@ NFL2022_stuffs <- read_csv('https://bcdanl.github.io/data/NFL2022_stuffs.csv')
   group_by(posteam) %>%
   summarize(mean_pass = mean(pass, na.rm = TRUE))
 ```
-
 
 ```{r}
 #Q2c
@@ -67,7 +69,6 @@ NFL2022_stuffs_EPA <- NFL2022_stuffs %>%
   filter(!is.na(passer))
 ```
 
-
 ```{r}
 #Q2e
 weekly_trend <- NFL2022_stuffs_EPA %>%
@@ -84,15 +85,12 @@ ggplot(weekly_trend, aes(x = week, y = mean_epa, color = passer)) +
  theme_minimal()
 ```
 
-
 ```{r}
 #Q2f
 mean_epa_diff <- weekly_trend %>%
   spread(passer, mean_epa) %>%
   mutate(diff_J_Allen_P_Mahomes = `J.Allen` - `P.Mahomes`)
 ```
-
-
 
 ```{r}
 #Q2g
