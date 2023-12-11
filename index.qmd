@@ -18,7 +18,7 @@ about:
       href: https://github.com/sophierodger
     - icon: file-earmark-pdf
       text: Resumé
-      href: https://sophierodger.github.io/resume-example.pdf
+      href: https://www.canva.com/design/DAF2WVJgSs8/fn5R9Z6vfzz5qVElpAHf-w/edit?utm_content=DAF2WVJgSs8&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton 
     - icon: mailbox
       text: Email
       href: mailto:sr103@geneseo.edu
