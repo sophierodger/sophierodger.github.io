@@ -1,5 +1,5 @@
 ---
-title: "Welcome To My Blog :purple_heart: :sunny:"
+title: "Welcome To My Blog :purple_heart: :sunny: "
 author: "Sophia Rodger"
 date: "2023-10-27"
 categories: [news]
