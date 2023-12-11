@@ -1,17 +1,3 @@
----
-title: "HW 5"
-author: "Sophia Rodger"
-date: "2023-10-30"
-categories: [nfl, code, analysis]
-image: "image.png"
-
-execute: 
-  warning: false
-  message: false
-  
-toc: true
-from: markdown+emoji
----
 
 
 ```{r setup}
