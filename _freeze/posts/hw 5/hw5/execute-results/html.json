@@ -1,0 +1,16 @@
+{
+  "hash": "e1b3868d98c8a2c798aa46e48e9b4ca0",
+  "result": {
+    "markdown": "---\ntitle: \"HW 5\"\nauthor: \"Sophia Rodger\"\ndate: \"2023-10-30\"\ncategories: [nfl, code, analysis]\nimage: \"image.png\"\n\nexecute: \n  warning: false\n  message: false\n  \ntoc: true\nfrom: markdown+emoji\n---\n\n\n\n\n\n# Q2a\n\n::: {.cell}\n\n```{.r .cell-code}\nNFL2022_stuffs <- read_csv('https://bcdanl.github.io/data/NFL2022_stuffs.csv')\n NFL2022_stuffs <- NFL2022_stuffs[complete.cases(NFL2022_stuffs$posteam), ]\n```\n:::\n\n# Q2b\n\n::: {.cell}\n\n```{.r .cell-code}\n filtered_data <- NFL2022_stuffs %>%\n  filter(wp > 0.2 & wp < 0.75, down <= 2, half_seconds_remaining > 120)\n\n summary_pass <- filtered_data %>%\n  group_by(posteam) %>%\n  summarize(mean_pass = mean(pass, na.rm = TRUE))\n```\n:::\n\n\n\n# Q2c\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(ggplot2)\n\n# Reordering posteam based on mean value of pass\n summary_pass$posteam <- factor(summary_pass$posteam, levels =  summary_pass$posteam[order(summary_pass$mean_pass)])\n\n# Plotting\n ggplot(summary_pass, aes(x = mean_pass, y = posteam)) +\n  geom_point() +\n  labs(title = \"Mean Value of Pass for Each posteam\",\n       x = \"Percentage of pass plays\",\n       y = \"Team with possession\") +\n  theme_minimal()\n```\n\n::: {.cell-output-display}\n![](hw5_files/figure-html/unnamed-chunk-3-1.png){width=672}\n:::\n:::\n\n\n# Q2d\n\n::: {.cell}\n\n```{.r .cell-code}\nNFL2022_epa <- read_csv('https://bcdanl.github.io/data/NFL2022_epa.csv')\n\nNFL2022_stuffs_EPA <- NFL2022_stuffs %>%\n  left_join(NFL2022_epa %>% select(play_id, passer, receiver, epa), by = \"play_id\") %>%\n  filter(!is.na(passer))\n```\n:::\n\n# Q2e\n\n::: {.cell}\n\n```{.r .cell-code}\nweekly_trend <- NFL2022_stuffs_EPA %>%\n  filter(passer %in% c(\"J.Allen\", \"P.Mahomes\")) %>%\n group_by(week, passer) %>%\n  summarize(mean_epa = mean(epa, na.rm = TRUE))\n\n# Plotting\nggplot(weekly_trend, aes(x = week, y = mean_epa, color = passer)) +\n  geom_line() +\n  labs(title = \"NFL Weekly Trend of Mean EPA\",\n       x = \"Week\",\n       y = \"Mean EPA\") +\n theme_minimal()\n```\n\n::: {.cell-output-display}\n![](hw5_files/figure-html/unnamed-chunk-5-1.png){width=672}\n:::\n:::\n",
+    "supporting": [
+      "hw5_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
