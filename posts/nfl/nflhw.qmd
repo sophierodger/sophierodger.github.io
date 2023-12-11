@@ -11,6 +11,7 @@ execute:
 toc: true
 ---
 
+
 ```{r setup}
 #| include: false
 library(tidyverse)
@@ -32,14 +33,16 @@ theme_set(theme_ipsum()+
           )
 ```
 
+# Q2a
+
 ```{r}
-#Q2a
 NFL2022_stuffs <- read_csv('https://bcdanl.github.io/data/NFL2022_stuffs.csv')
  NFL2022_stuffs <- NFL2022_stuffs[complete.cases(NFL2022_stuffs$posteam), ]
 ```
 
+# Q2b
+
 ```{r}
-#Q2b
  filtered_data <- NFL2022_stuffs %>%
   filter(wp > 0.2 & wp < 0.75, down <= 2, half_seconds_remaining > 120)
 
@@ -48,8 +51,9 @@ NFL2022_stuffs <- read_csv('https://bcdanl.github.io/data/NFL2022_stuffs.csv')
   summarize(mean_pass = mean(pass, na.rm = TRUE))
 ```
 
-```{r}
 #Q2c
+
+```{r}
 library(ggplot2)
 
 # Reordering posteam based on mean value of pass
@@ -64,8 +68,9 @@ library(ggplot2)
   theme_minimal()
 ```
 
-```{r}
 #Q2d
+
+```{r}
 NFL2022_epa <- read_csv('https://bcdanl.github.io/data/NFL2022_epa.csv')
 
 NFL2022_stuffs_epa <- NFL2022_stuffs %>%
@@ -73,8 +78,9 @@ NFL2022_stuffs_epa <- NFL2022_stuffs %>%
   filter(!is.na(passer))
 ```
 
-```{r}
 #Q2e
+
+```{r}
 weekly_trend <- NFL2022_stuffs_epa %>%
   filter(passer %in% c("J.Allen", "P.Mahomes")) %>%
  group_by(week, passer) %>%
@@ -89,15 +95,17 @@ ggplot(weekly_trend, aes(x = week, y = mean_epa, color = passer)) +
  theme_minimal()
 ```
 
+# Q2f
+
 ```{r}
-#Q2f
 mean_epa_diff <- weekly_trend %>%
   spread(passer, mean_epa) %>%
   mutate(diff_J_Allen_P_Mahomes = `J.Allen` - `P.Mahomes`)
 ```
 
-```{r}
 #Q2g
+
+```{r}
 passer_summary <- NFL2022_stuffs_epa %>%
   group_by(posteam, passer) %>%
   summarize(mean_epa = mean(epa, na.rm = TRUE),
@@ -110,8 +118,10 @@ top_10_passers <- passer_summary %>%
   top_n(10, wt = mean_epa)
 ```
 
+# Q2h
+
 ```{r}
-# Q2h: Visualization of Mean EPA for Top 10 Passers
+# Visualization of Mean EPA for Top 10 Passers
 ggplot(top_10_passers, aes(x = reorder(passer, mean_epa), y = mean_epa)) +
   geom_bar(stat = "identity", fill = "#FF9999", color = "#FF6666", width = 0.7) +
   labs(title = "Mean EPA for Top 10 Passers",
@@ -120,4 +130,3 @@ ggplot(top_10_passers, aes(x = reorder(passer, mean_epa), y = mean_epa)) +
   theme_ipsum() +
   theme(axis.text.y = element_text(size = 9, hjust = 0))
 ```
-
