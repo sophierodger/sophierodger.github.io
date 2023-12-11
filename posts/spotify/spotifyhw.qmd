@@ -107,3 +107,39 @@ pid_artist_df <- spotify_all %>%
 
 # This creates a data frame with pid-artist level of observations
 ```
+
+# Q1e
+```{r}
+top10_artists <- spotify_all %>%
+  group_by(artist_name) %>%
+  summarise(total_duration = sum(duration_ms)) %>%
+  top_n(10, total_duration)
+
+ggplot(top10_artists, aes(x = reorder(artist_name, total_duration), y = total_duration)) +
+  geom_point(stat = "identity", fill = "green") +
+  labs(title = "Top 10 Artists by Total Duration",
+       x = "Artist Name",
+       y = "Total Duration (ms)") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1))
+
+```
+# Q1f
+
+```{r}
+top_20_albums <- spotify_all %>%
+  count(album_name, sort = TRUE) %>%
+  head(20)
+
+ggplot(top_20_albums, aes(x = reorder(album_name, n), y = n)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  labs(title = "Top 20 Albums by Count",
+       x = "Album Name",
+       y = "Count") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+# This bar plot shows the top 20 albums based on
+# the count of tracks in the dataset. The x-axis 
+# represents the album names, and the y-axis 
+# represents the count of tracks from each album.
+```
+
