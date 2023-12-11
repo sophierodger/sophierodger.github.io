@@ -34,6 +34,7 @@ theme_set(theme_ipsum()+
 ```
 
 Let's analyze the data for 'Beer Markets' :beers:
+
 ```{r}
 library(tidyverse)
 library(skimr)
@@ -53,7 +54,6 @@ top_markets
 
 # This code finds the top 5 markets in terms of total beer_floz for each beer brand
 ```
-
 
 ```{r}
 loyal_consumers <- beer_mkts %>%
@@ -128,7 +128,3 @@ top_brands_plot <- top_markets %>%
 print(top_brands_plot)
 
 ```
-
-
-
-
