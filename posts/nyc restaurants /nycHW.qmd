@@ -9,10 +9,31 @@ execute:
   warning: false
   
 toc: true
+from: markdown+emoji
 ---
 
+```{r setup}
+#| include: false
+library(tidyverse)
+library(skimr)
+library(ggthemes)
+library(hrbrthemes)
 
+theme_set(theme_ipsum()+
+          theme(strip.background =element_rect(fill="pink"),
+                axis.title.x = 
+                  element_text(angle = 0,
+                               size = rel(1.33),
+                               margin = margin(10,0,0,0)),
+                axis.title.y = 
+                  element_text(angle = 0,
+                               size = rel(1.33),
+                               margin = margin(0,10,0,0))
+                )
+          )
+```
 
+Let's analyze the data for 'NYC Restaurants' :pizza:
 
 ```{r}
 library(tidyverse)
@@ -21,6 +42,7 @@ restaurant <- read_csv(
   'https://bcdanl.github.io/data/DOHMH_NYC_Restaurant_Inspection.csv'
 )
 ```
+
 ```{r}
 
 summary_stats <- restaurant %>%
@@ -39,7 +61,6 @@ print(summary_stats)
 # The code calculates the mean, standard deviation, quartiles, and maximum 
 # of SCORE for each GRADE of restaurants.
 ```
-
 
 ```{r}
 grade_a_count <- nrow(restaurant[restaurant$GRADE == "A", ])
@@ -82,6 +103,7 @@ ggplot(restaurant, aes(x = BORO, fill = `CRITICAL FLAG`)) +
 # critical count. The Bronx has the most critical count in GRADE C, while 
 # Staten Island has the least critical count in GRADE A.
 ```
+
 ```{r}
 
 top_cuisines <- restaurant %>%
@@ -121,6 +143,7 @@ most_common_dba <- common_dbas %>%
 # borough and identifies the most common DBA value overall in NYC. 
 # Overall, the most common DBA value in NYC is starbucks.
 ```
+
 ```{r}
 
 critical_dba <- restaurant %>%
@@ -135,7 +158,9 @@ critical_dba <- restaurant %>%
 # among the common DBA's identified in Q1f. The DBA value that is most likely
 # to commit critical violation is dunkin.
 ```
+
 # Q1h
+
 ```{r}
 ggplot(restaurant, aes(x = BORO, y = SCORE, fill = GRADE)) +
   geom_boxplot() +
@@ -146,5 +171,3 @@ ggplot(restaurant, aes(x = BORO, y = SCORE, fill = GRADE)) +
 # provides insights into the variation in inspection scores for different boroughs
 # and grades.
 ```
-
-

@@ -12,7 +12,6 @@ toc: true
 from: markdown+emoji
 ---
 
-
 ```{r setup}
 #| include: false
 library(tidyverse)
@@ -35,6 +34,7 @@ theme_set(theme_ipsum()+
 ```
 
 Let's analyze the data for 'Spotify' :saxophone:
+
 ```{r}
 library(tidyverse)
 library(skimr)
@@ -95,6 +95,7 @@ ggplot(top_songs, aes(x = artist_name, y = popularity, fill = artist_name)) +
 # popularity above 100.
 
 ```
+
 ```{r}
 # -   `pid`: playlist id
 # -   `playlist_name`: name of playlist
@@ -111,6 +112,7 @@ pid_artist_df <- spotify_all %>%
 ```
 
 # Q1e
+
 ```{r}
 top10_artists <- spotify_all %>%
   group_by(artist_name) %>%
@@ -125,6 +127,7 @@ ggplot(top10_artists, aes(x = reorder(artist_name, total_duration), y = total_du
   theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1))
 
 ```
+
 # Q1f
 
 ```{r}
@@ -144,4 +147,3 @@ ggplot(top_20_albums, aes(x = reorder(album_name, n), y = n)) +
 # represents the album names, and the y-axis 
 # represents the count of tracks from each album.
 ```
-

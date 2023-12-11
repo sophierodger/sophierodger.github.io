@@ -9,6 +9,7 @@ execute:
   warning: false
   
 toc: true
+from: markdown+emoji
 ---
 
 ```{r setup}
@@ -32,6 +33,7 @@ theme_set(theme_ipsum()+
           )
 ```
 
+Let's analyze the data for 'Beer Markets' :beers:
 ```{r}
 library(tidyverse)
 library(skimr)
