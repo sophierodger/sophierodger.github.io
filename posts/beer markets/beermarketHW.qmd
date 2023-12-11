@@ -89,4 +89,44 @@ household_stats
 # beer brand choice for each household
 ```
 
+```{r}
+# Plotting Total Beer Volume by Brand in Top 5 Markets with geom_point
+ggplot(top_markets, aes(x = brand, y = total_floz, color = market)) +
+  geom_point(size = 3) +
+  labs(title = "Total Beer Volume by Brand in Top 5 Markets",
+       x = "Beer Brand",
+       y = "Total Beer Volume (floz)",
+       color = "Market") +
+  theme_minimal()
+```
+
+```{r}
+# Plotting Proportion of Households Purchasing Only Each Beer Brand
+ggplot(loyal_consumers, aes(x = brand, y = fraction)) +
+  geom_bar(stat = "identity", fill = "purple") +
+  labs(title = "Proportion of Households Purchasing Only Each Beer Brand",
+       x = "Beer Brand",
+       y = "Proportion of Loyal Consumers") +
+  theme_ipsum()
+# This ggplot code creates a bar plot that visualizes the proportion of households purchasing only each beer brand. 
+# Each bar represents a beer brand, and the height of the bar corresponds to the proportion of loyal consumers for that brand
+```
+
+```{r}
+# Bar Chart of Top 10 Brands by Total Ounces Sold
+top_brands_plot <- top_markets %>%
+  ggplot(aes(x = reorder(brand, -total_floz), y = total_floz, fill = brand)) +
+  geom_bar(stat = "identity") +
+  theme_minimal() +
+  labs(title = "Top 10 Brands by Total Ounces Sold",
+       x = "Brand",
+       y = "Total Ounces Sold") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+print(top_brands_plot)
+
+```
+
+
+
 
