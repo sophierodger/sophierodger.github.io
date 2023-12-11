@@ -3,8 +3,8 @@ title: "Sophia Rodger"
 about:
   template: trestles  # jolla  trestles  solana  marquee  broadside
   image: prof.png 
-  image-width: 15em
-  image-shape: round # rectangle  round  rounded
+  image-width: 20em
+  image-shape: round # rectangle  
   
   links:
     - icon: linkedin
