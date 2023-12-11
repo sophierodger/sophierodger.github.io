@@ -2,7 +2,7 @@
 title: "Beer Markets"
 author: "Sophia Rodger"
 date: "2023-10-30"
-image: "image.png"
+image: "beer.png"
 
 execute:
   message: false
