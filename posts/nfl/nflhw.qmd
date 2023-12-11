@@ -9,6 +9,7 @@ execute:
   warning: false
   
 toc: true
+from: markdown+emoji
 ---
 
 
@@ -32,6 +33,9 @@ theme_set(theme_ipsum()+
                 )
           )
 ```
+
+
+Let's analyze the data for 'NFL' :football:
 
 # Q2a
 
