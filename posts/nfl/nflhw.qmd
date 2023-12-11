@@ -68,14 +68,14 @@ library(ggplot2)
 #Q2d
 NFL2022_epa <- read_csv('https://bcdanl.github.io/data/NFL2022_epa.csv')
 
-NFL2022_stuffs_EPA <- NFL2022_stuffs %>%
+NFL2022_stuffs_epa <- NFL2022_stuffs %>%
   left_join(NFL2022_epa %>% select(play_id, passer, receiver, epa), by = "play_id") %>%
   filter(!is.na(passer))
 ```
 
 ```{r}
 #Q2e
-weekly_trend <- NFL2022_stuffs_EPA %>%
+weekly_trend <- NFL2022_stuffs_epa %>%
   filter(passer %in% c("J.Allen", "P.Mahomes")) %>%
  group_by(week, passer) %>%
   summarize(mean_epa = mean(epa, na.rm = TRUE))
@@ -98,7 +98,7 @@ mean_epa_diff <- weekly_trend %>%
 
 ```{r}
 #Q2g
-passer_summary <- NFL2022_stuffs_EPA %>%
+passer_summary <- NFL2022_stuffs_epa %>%
   group_by(posteam, passer) %>%
   summarize(mean_epa = mean(epa, na.rm = TRUE),
             n_pass = n()) %>%
@@ -108,4 +108,18 @@ top_10_passers <- passer_summary %>%
   group_by(passer) %>%
   summarize(mean_epa = mean(mean_epa, na.rm = TRUE)) %>%
   top_n(10, wt = mean_epa)
+# This ggplot code generates a horizontal bar chart where the x-axis represents the mean EPA, and each bar corresponds to a quarterback. 
 ```
+
+```{r}
+# Q2h: Visualization of Mean EPA for Top 10 Passers
+ggplot(top_10_passers, aes(x = reorder(passer, mean_epa), y = mean_epa)) +
+  geom_bar(stat = "identity", fill = "#FF9999", color = "#FF6666", width = 0.7) +
+  labs(title = "Mean EPA for Top 10 Passers",
+       x = "Quarterback",
+       y = "Mean EPA") +
+  theme_ipsum() +
+  theme(axis.text.y = element_text(size = 9, hjust = 0))
+```
+
+
