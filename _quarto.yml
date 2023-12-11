@@ -11,8 +11,10 @@ website:
         href: project.qmd
       - text: Blog
         href: blog-listing.qmd
+      - text: HW 5
+        href: danl200-hw5-RODGER_SOPHIA.qmd
+        
 
-           
   page-footer: 
     center: "Powered with GitHub and Quarto<br>© Sophia Rodger, 2023"
 
