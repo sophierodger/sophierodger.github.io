@@ -135,5 +135,16 @@ critical_dba <- restaurant %>%
 # among the common DBA's identified in Q1f. The DBA value that is most likely
 # to commit critical violation is dunkin.
 ```
+# Q1h
+```{r}
+ggplot(restaurant, aes(x = BORO, y = SCORE, fill = GRADE)) +
+  geom_boxplot() +
+  labs(title = "Distribution of SCORE by BORO and GRADE")
+
+# This code creates a box plot to visualize how the distribution of SCORE varies
+# across different boroughs (BORO) and restaurant grades (GRADE). The box plot
+# provides insights into the variation in inspection scores for different boroughs
+# and grades.
+```
 
 
