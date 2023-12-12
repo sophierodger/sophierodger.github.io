@@ -43,7 +43,6 @@ beer_mkts <- read_csv('https://bcdanl.github.io/data/beer_markets.csv')
 ```
 
 ```{r}
-
 top_markets <- beer_mkts %>%
   group_by(brand, market) %>%
   summarize(total_floz = sum(beer_floz)) %>%
@@ -66,6 +65,8 @@ loyal_consumers <- beer_mkts %>%
 loyal_consumers
 
 # This code calculates the fraction of households purchasing only each beer brand
+
+
 
 largest_proportion_brand <- loyal_consumers %>%
   arrange(desc(fraction)) %>%
