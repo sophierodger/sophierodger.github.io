@@ -12,7 +12,7 @@ about:
       href: https://www.linkedin.com/in/sophia-rodger-58b31124a/
     - icon: instagram
       text: Instagram
-      href: https://https://www.instagram.com/sophierodgerr/
+      href: https://www.instagram.com/sophierodgerr/ 
     - icon: github
       text: GitHub
       href: https://github.com/sophierodger
