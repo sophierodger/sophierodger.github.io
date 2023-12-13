@@ -12,7 +12,7 @@
 <meta name="author" content="Blaise Leone">
 <meta name="author" content="Mac Bean">
 
-<title>Sophia Rodger - DANL Project</title>
+<title>Sophia Rodger - Beer Analytics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -150,8 +150,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="header-section-number">2</span> Data</a>
   <ul class="collapse">
   <li><a href="#summary-statistics" id="toc-summary-statistics" class="nav-link" data-scroll-target="#summary-statistics"><span class="header-section-number">2.1</span> Summary Statistics</a></li>
-  <li><a href="#alcohol-content-in-beer-brands" id="toc-alcohol-content-in-beer-brands" class="nav-link" data-scroll-target="#alcohol-content-in-beer-brands"><span class="header-section-number">2.2</span> Alcohol Content in Beer Brands</a></li>
   </ul></li>
+  <li><a href="#top-5-beer-brands-by-age-group" id="toc-top-5-beer-brands-by-age-group" class="nav-link" data-scroll-target="#top-5-beer-brands-by-age-group"><span class="header-section-number">3</span> Top 5 Beer Brands by Age Group</a></li>
+  <li><a href="#visualization-top-5-beer-brands-by-age-group" id="toc-visualization-top-5-beer-brands-by-age-group" class="nav-link" data-scroll-target="#visualization-top-5-beer-brands-by-age-group"><span class="header-section-number">4</span> Visualization: Top 5 Beer Brands by Age Group</a></li>
+  <li><a href="#transaction-counts-per-brand-for-age-groups" id="toc-transaction-counts-per-brand-for-age-groups" class="nav-link" data-scroll-target="#transaction-counts-per-brand-for-age-groups"><span class="header-section-number">5</span> Transaction Counts per Brand for Age Groups</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">6</span> Conclusion</a></li>
   </ul>
 </nav>
     </div>
@@ -160,7 +163,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">DANL Project</h1>
+<h1 class="title">Beer Analytics</h1>
 <p class="subtitle lead">Data-Driven Mastery: Unlocking Business Potential</p>
 </div>
 
@@ -188,16 +191,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introduction" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
-<p>Welcome to the exploration of alcohol content trends in popular beer brands! In this project, we delve into a dataset containing information on different beer brands. Our focus is on understanding the variation in alcohol content among these brands, providing insights into the diverse world of beers. <span class="emoji" data-emoji="beers">🍻</span> <span class="emoji" data-emoji="clap">👏</span></p>
+<p>Welcome to the fascinating journey through the intricate landscape of beer preferences across age groups! Embark on an exploration of our meticulously curated ‘beer_data’ set, a treasure trove of information on diverse beer brands. In this project, we delve into a data set containing information on different beer brands. Our focus is on understanding the relationship that age has among buying these brands, providing insights into the diverse world of beers. So, grab your virtual mug, and let’s raise a digital toast to the intricate tapestry of beer trends! <span class="emoji" data-emoji="beers">🍻</span> <span class="emoji" data-emoji="clap">👏</span></p>
 </section>
 <section id="data" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Data</h1>
-<p>The dataset beer_data contains a curated selection of beer brands. Let’s begin by exploring the summary statistics to gain an initial understanding of the dataset. <span class="emoji" data-emoji="beers">🍻</span></p>
+<p>The data set ‘beer_data’ contains a curated selection of beer brands. Let’s begin by exploring the summary statistics to gain an initial understanding of the core characteristics that define these brews in the data set. <span class="emoji" data-emoji="beers">🍻</span></p>
 <section id="summary-statistics" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="summary-statistics"><span class="header-section-number">2.1</span> Summary Statistics</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>beer_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">'https://bcdanl.github.io/data/beer_markets.csv'</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>The ‘skim’ function is used to generate summary statistics, providing key insights into central tendencies, dispersions, and other relevant characteristics of the dataset. The ‘select(-n_missing)’ part excludes information about missing values.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(beer_data) <span class="sc">%&gt;%</span> </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>n_missing)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -521,14 +525,96 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 </div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The summary statistics provide us with key insights into the central </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># tendencies, dispersions, and other relevant characteristics of the dataset.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="alcohol-content-in-beer-brands" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="alcohol-content-in-beer-brands"><span class="header-section-number">2.2</span> Alcohol Content in Beer Brands</h2>
-<p>We aim to analyze the alcohol content of different beer brands. Let’s visualize this with an insightful boxplot. <span class="emoji" data-emoji="bar_chart">📊</span> <span class="emoji" data-emoji="beer">🍺</span></p>
-
-
 </section>
+<section id="top-5-beer-brands-by-age-group" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Top 5 Beer Brands by Age Group</h1>
+<p>Now, let’s dive into the essence of age and beer brand dynamics. The code below calculates summary statistics (mean, median, max, min) of total beer volume by brand for each age group. The results are then arranged to identify the top 5 beer brands in terms of total volume for each age group.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>age_brand_preference <span class="ot">&lt;-</span> beer_data <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(age, brand) <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total_floz =</span> <span class="fu">sum</span>(beer_floz)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(age, <span class="fu">desc</span>(total_floz)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(age) <span class="sc">%&gt;%</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>age_brand_preference</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 3
+# Groups:   age [4]
+   age   brand         total_floz
+   &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;
+ 1 30-39 BUD LIGHT        492750 
+ 2 30-39 MILLER LITE      363598 
+ 3 30-39 COORS LIGHT      227851 
+ 4 30-39 BUSCH LIGHT      162672 
+ 5 30-39 NATURAL LIGHT    111720 
+ 6 40-49 BUD LIGHT       1467536 
+ 7 40-49 MILLER LITE     1112282 
+ 8 40-49 COORS LIGHT      817071.
+ 9 40-49 NATURAL LIGHT    815836 
+10 40-49 BUSCH LIGHT      567000 
+11 50+   BUD LIGHT       3336438.
+12 50+   MILLER LITE     2985222 
+13 50+   NATURAL LIGHT   2530378 
+14 50+   COORS LIGHT     2294203 
+15 50+   BUSCH LIGHT     1943552 
+16 &lt;30   BUD LIGHT         72340 
+17 &lt;30   MILLER LITE       64768 
+18 &lt;30   NATURAL LIGHT     31656 
+19 &lt;30   BUSCH LIGHT       24072 
+20 &lt;30   COORS LIGHT       22296 </code></pre>
+</div>
+</div>
+</section>
+<section id="visualization-top-5-beer-brands-by-age-group" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Visualization: Top 5 Beer Brands by Age Group</h1>
+<p>The visualization below transforms data into art, as ggplot2 weaves a bar chart depicting the top 5 beer brands for each age group based on total volume. Let the colors and shapes unveil the symphony of preferences!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(age_brand_preference, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> total_floz, <span class="at">fill =</span> brand)) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Top 5 Beer Brands by Age Group"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Age Group"</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Total Beer Volume (floz)"</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Brand"</span>) <span class="sc">+</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="project_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="864"></p>
+</div>
+</div>
+</section>
+<section id="transaction-counts-per-brand-for-age-groups" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Transaction Counts per Brand for Age Groups</h1>
+<p>The next code segment calculates the number of transactions for each beer brand within different age groups. The results are then visualized using a scatter plot with facets for each brand.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>beer_data<span class="sc">$</span>brand <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(beer_data<span class="sc">$</span>brand)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>beer_data<span class="sc">$</span>age <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(beer_data<span class="sc">$</span>age)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>transaction_counts <span class="ot">&lt;-</span> beer_data <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(age, brand) <span class="sc">%&gt;%</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">TransactionCount =</span> <span class="fu">n</span>())</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(transaction_counts, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> TransactionCount)) <span class="sc">+</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>brand, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Number of Transactions per Brand for Age"</span>,</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Age"</span>,</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Transaction Count"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="project_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="864"></p>
+</div>
+</div>
+</section>
+<section id="conclusion" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Conclusion</h1>
+<p>In the symphony of sips and preferences, our exploration illuminates the nuanced dance between age and beer brands. These visualizations and analyses offer insights into consumer preferences for beer brands across different age groups. From the towering favorites in total volume to the intricate choreography of transaction counts, each sip tells a tale. As the curtain falls, these insights offer a glimpse into the kaleidoscopic world of beer preferences, where age becomes a defining note in the grand composition of consumer choices. Cheers to the intricate brew of data, age, and brand preferences! <span class="emoji" data-emoji="beers">🍻</span> <span class="emoji" data-emoji="sparkles">✨</span></p>
+
+
 </section>
 
 </main> <!-- /main -->
