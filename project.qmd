@@ -1,5 +1,5 @@
 ---
-title: DANL Project
+title: Beer Analytics 
 subtitle: "Data-Driven Mastery: Unlocking Business Potential"
 author: 
   - Sophia Rodger 
@@ -29,6 +29,7 @@ library(tidyverse)
 library(skimr)
 library(ggthemes)
 library(hrbrthemes)
+library(ggplot2)
 
 theme_set(theme_ipsum()+
           theme(strip.background =element_rect(fill="lightgray"),
@@ -46,11 +47,11 @@ theme_set(theme_ipsum()+
 
 # Introduction
 
-Welcome to the exploration of alcohol content trends in popular beer brands! In this project, we delve into a dataset containing information on different beer brands. Our focus is on understanding the variation in alcohol content among these brands, providing insights into the diverse world of beers. :beers: :clap:
+Welcome to the fascinating journey through the intricate landscape of beer preferences across age groups! Embark on an exploration of our meticulously curated 'beer_data' set, a treasure trove of information on diverse beer brands. In this project, we delve into a data set containing information on different beer brands. Our focus is on understanding the relationship that age has among buying these brands, providing insights into the diverse world of beers. So, grab your virtual mug, and let's raise a digital toast to the intricate tapestry of beer trends! :beers: :clap:
 
 # Data
 
-The dataset beer_data contains a curated selection of beer brands. Let's begin by exploring the summary statistics to gain an initial understanding of the dataset. :beers:
+The data set 'beer_data' contains a curated selection of beer brands. Let's begin by exploring the summary statistics to gain an initial understanding of the core characteristics that define these brews in the data set. :beers:
 
 ## Summary Statistics
 
@@ -58,16 +59,70 @@ The dataset beer_data contains a curated selection of beer brands. Let's begin b
 beer_data <- read_csv('https://bcdanl.github.io/data/beer_markets.csv') 
 ```
 
+The 'skim' function is used to generate summary statistics, providing key insights into central tendencies, dispersions, and other relevant characteristics of the dataset. The 'select(-n_missing)' part excludes information about missing values.
+
 ```{r}
 skim(beer_data) %>% 
   select(-n_missing)
+
+# The summary statistics provide us with key insights into the central 
+# tendencies, dispersions, and other relevant characteristics of the dataset.
 ```
 
+# Top 5 Beer Brands by Age Group
 
-## Alcohol Content in Beer Brands 
+Now, let's dive into the essence of age and beer brand dynamics. The code below calculates summary statistics (mean, median, max, min) of total beer volume by brand for each age group. The results are then arranged to identify the top 5 beer brands in terms of total volume for each age group.
 
-We aim to analyze the alcohol content of different beer brands. Let's visualize this with an insightful boxplot. :bar_chart: :beer:
+```{r}
+age_brand_preference <- beer_data %>%
+  group_by(age, brand) %>%
+  summarize(total_floz = sum(beer_floz)) %>%
+  arrange(age, desc(total_floz)) %>%
+  group_by(age) %>%
+  slice(1:5)
+age_brand_preference
+```
+
+# Visualization: Top 5 Beer Brands by Age Group
+
+The visualization below transforms data into art, as ggplot2 weaves a bar chart depicting the top 5 beer brands for each age group based on total volume. Let the colors and shapes unveil the symphony of preferences!
+
+```{r}
+library(ggplot2)
+
+ggplot(age_brand_preference, aes(x = age, y = total_floz, fill = brand)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Top 5 Beer Brands by Age Group",
+       x = "Age Group",
+       y = "Total Beer Volume (floz)",
+       fill = "Brand") +
+  theme_minimal()
+
+```
+
+# Transaction Counts per Brand for Age Groups
+
+The next code segment calculates the number of transactions for each beer brand within different age groups. The results are then visualized using a scatter plot with facets for each brand.
 
 ```{r}
 
+beer_data$brand <- as.factor(beer_data$brand)
+beer_data$age <- as.factor(beer_data$age)
+
+transaction_counts <- beer_data %>%
+  group_by(age, brand) %>%
+  summarise(TransactionCount = n())
+
+
+ggplot(transaction_counts, aes(x = age, y = TransactionCount)) +
+  geom_point() +
+  facet_wrap(~brand, scales = "free_y") +
+  labs(title = "Number of Transactions per Brand for Age",
+       x = "Age",
+       y = "Transaction Count")
+
 ```
+
+# Conclusion
+
+In the symphony of sips and preferences, our exploration illuminates the nuanced dance between age and beer brands. These visualizations and analyses offer insights into consumer preferences for beer brands across different age groups. From the towering favorites in total volume to the intricate choreography of transaction counts, each sip tells a tale. As the curtain falls, these insights offer a glimpse into the kaleidoscopic world of beer preferences, where age becomes a defining note in the grand composition of consumer choices. Cheers to the intricate brew of data, age, and brand preferences! :beers: :sparkles:
